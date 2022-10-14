@@ -1,0 +1,24 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 3rem;
+	cursor: pointer;
+}
+
+.cardTitle {
+	color: var(--primary-color-500);
+	font-size: 1.2rem;
+}
+.cardPrice {
+	font-size: 1rem;
+	font-weight: 700;
+	color: black;
+}
+.cardDesc {
+	width: 150px;
+	font-size: 1rem;
+	text-align: center;
+}

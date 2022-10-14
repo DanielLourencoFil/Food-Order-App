@@ -1,0 +1,20 @@
+:root {
+	--primary-color-500: #d24121;
+	--secondary-color-500: #f1c04e;
+	--dark-color-100: #dbdbdb;
+	--dark-color-200: #a1a1a1;
+	--dark-color-300: #585858;
+	--dark-color-500: #222222;
+	--light-color-500: #fff;
+
+	/*text*/
+	--primary-font: "Ubuntu", sans-serif;
+	--secondary-font: "Poppins", sans-serif;
+	--terceary-font: "Comforter Brush", cursive;
+	--quaternary-font: "Concert One", cursive;
+	--space-1: 1xp;
+	--space-2: 2px;
+
+	/*sizes*/
+	--navbar: 100px;
+}

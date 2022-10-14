@@ -1,0 +1,132 @@
+.hero {
+	position: relative;
+	height: calc(100vh - var(--navbar));
+	display: flex;
+	overflow-x: hidden;
+}
+.arrowIcon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--light-color-500);
+	font-size: 10rem;
+	cursor: pointer;
+	z-index: 2;
+}
+/*SLIDES*/
+.slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* position: relative; */
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--primary-color-500);
+	color: var(--light-color-500);
+	transition: all 1.5s ease-in-out;
+}
+.slideTextContainer {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	text-transform: uppercase;
+}
+.imageContainer {
+	position: relative;
+	display: flex;
+}
+
+/*SLIDE 01*/
+.slide01 {
+	font-family: var(--secondary-font);
+	gap: 2rem;
+}
+.slide01 .slideTextContainer {
+	text-align: center;
+	justify-content: center;
+}
+.slide01 .text02 {
+	font-size: 7rem;
+	/* padding: 0; */
+	line-height: 1;
+}
+.slide01 .text03 {
+	position: relative;
+	width: fit-content;
+	font-size: 2rem;
+	margin: 0 auto;
+	margin-bottom: 2px;
+}
+.slide01 .text03::after {
+	content: "";
+	position: absolute;
+	bottom: -2px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	height: 3px;
+	background-color: var(--light-color-500);
+}
+.slide01 .text04 {
+	position: relative;
+	width: fit-content;
+	margin: 0 auto;
+	font-size: 1.35rem;
+}
+.slide01 .text04::after {
+	content: "";
+	position: absolute;
+	bottom: -2px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	height: 3px;
+	background-color: var(--light-color-500);
+}
+.underline {
+	height: 4px;
+	width: 60px;
+	background-color: var(--light-color-500);
+	margin: 1rem auto 2rem auto;
+}
+/*image*/
+.slide01 .spiceImg {
+	left: 10px;
+	position: absolute;
+	bottom: -30px;
+}
+
+/*SLIDE 02*/
+.slide02 {
+	right: -100%;
+	gap: 3rem;
+}
+.slide02 .slideTextContainer {
+	align-items: flex-start;
+	font-family: var(--quaternary-font);
+	line-height: 1;
+}
+.slide02 .text01 {
+	font-size: 3.5rem;
+}
+.slide02 .text02 {
+	color: var(--secondary-color-500);
+	font-size: 6rem;
+}
+
+/*SLIDE 03*/
+.slide03 {
+	right: -200%;
+}
+.slide03 .text01 {
+	font-size: 4rem;
+	line-height: 1;
+}
+.slide03 .smallPizzaImg {
+	position: absolute;
+	bottom: -35px;
+}
