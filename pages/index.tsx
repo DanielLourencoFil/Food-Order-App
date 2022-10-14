@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useLanguage } from "../context/Language/LanguageContext";
 
 import { ChangeLanguageBtn } from "../components/buttons/ChangeLanguageBtn";
-import { Hero } from "../components";
+import { Hero, PizzaCardSection } from "../components";
 
 const Home: NextPage = () => {
 	const { languageTexts, currentLanguage, setCurrentLanguage } = useLanguage();
@@ -17,8 +17,9 @@ const Home: NextPage = () => {
 			</Head>
 			<div>
 				<Hero />
-				<ChangeLanguageBtn language="english" text="EN" />
-				<ChangeLanguageBtn language="portugues" text="BR" />
+				<PizzaCardSection />
+				{/* <ChangeLanguageBtn language="english" text="EN" />
+				<ChangeLanguageBtn language="portugues" text="BR" /> */}
 			</div>
 		</>
 	);
