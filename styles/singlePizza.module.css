@@ -9,6 +9,8 @@
 	position: relative;
 	flex: 1;
 }
+
+/* PIZZA INFO */
 .productInfoContainer {
 	flex: 1.5;
 	display: flex;
@@ -17,7 +19,16 @@
 }
 .productInfoHeader {
 }
-
+.title {
+	font-size: 2rem;
+	text-transform: uppercase;
+	margin-bottom: 2rem;
+}
+.price {
+	font-size: 1.5rem;
+	color: var(--primary-color-500);
+	margin-bottom: 1rem;
+}
 /*SIZES*/
 .sizesContainer {
 	display: flex;
@@ -26,6 +37,9 @@
 .sizeIconContainer {
 	position: relative;
 	cursor: pointer;
+}
+.sizesTitle {
+	margin-bottom: 1.5rem;
 }
 .sizeText {
 	position: absolute;
@@ -46,10 +60,23 @@
 }
 
 /*TOPINGS*/
-.checkBoxes {
-	display: flex;
+.topingsTitle {
+	margin-bottom: 1.5rem;
 }
-
+.checkBoxesContainer {
+	display: flex;
+	gap: 1.5rem;
+}
+.checkBox {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	line-height: 1;
+}
+.checkBox input {
+	width: 1.5rem;
+	height: 1.5rem;
+}
 .addCartContainer {
 	height: 2rem;
 }

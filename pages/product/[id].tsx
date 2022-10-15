@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styles from "../../styles/singlePizza.module.css";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const singleProduct = {
 	id: 1,
@@ -24,9 +25,13 @@ const SinglePizza = () => {
 
 	const [isSelected, setIsSelected] = useState<Selection>(selectionDefault);
 
+	const { query } = useRouter();
+	console.log(query.id);
+
 	return (
 		<div className="container">
 			<div className={`container-center ${styles.singlePizzaContainer}`}>
+				{/* PIZZA IMAGE */}
 				<div className={styles.imgContainer}>
 					<Image
 						src={singleProduct.img}
@@ -36,14 +41,19 @@ const SinglePizza = () => {
 						objectFit="contain"
 					/>
 				</div>
+
+				{/* PIZZA INFO */}
 				<section className={styles.productInfoContainer}>
+					{/* info header */}
 					<article className={styles.productInfoHeader}>
 						<h1 className={styles.title}>{singleProduct.title}</h1>
 						<p className={styles.price}>
-							{singleProduct.prices[isSelected.index]}
+							${singleProduct.prices[isSelected.index]}0
 						</p>
 						<p className={styles.description}>{singleProduct.desc}</p>
 					</article>
+
+					{/* SIZES */}
 					<article className={styles.sizes}>
 						<h1 className={styles.sizesTitle}>Chose the size</h1>
 						<div className={styles.sizesContainer}>
@@ -104,11 +114,12 @@ const SinglePizza = () => {
 						</div>
 					</article>
 
+					{/* additional ingredients */}
 					<article className={styles.topingsContainer}>
-						<h1 className={styles.topingTitle}>
+						<h1 className={styles.topingsTitle}>
 							Choose additional ingredients
 						</h1>
-						<div className={styles.checkBoxes}>
+						<div className={styles.checkBoxesContainer}>
 							<div className={styles.checkBox}>
 								<input type="checkbox" name="double topings" />
 								<label htmlFor="double topings">Double topings</label>
