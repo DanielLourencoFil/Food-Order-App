@@ -1,0 +1,41 @@
+.singlePizzaContainer {
+	height: calc(100vh - var(--navbar));
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 2rem;
+}
+.imgContainer {
+	position: relative;
+	flex: 1;
+}
+.productInfoContainer {
+	flex: 1.5;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+.productInfoHeader {
+}
+.sizesContainer {
+	display: flex;
+	gap: 4rem;
+}
+.sizeIconContainer {
+	position: relative;
+}
+.sizeText {
+	position: absolute;
+	padding: 0.2rem 0.5rem;
+	background-color: green;
+	border-radius: 10px;
+	line-height: 1;
+	text-align: center;
+	color: var(--light-color-500);
+	font-size: 0.65rem;
+	top: -5px;
+	right: -25px;
+}
+.checkBoxes {
+	display: flex;
+}
