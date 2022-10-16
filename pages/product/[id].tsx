@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const singleProduct = {
 	id: 1,
 	img: "/images/pizza-card.png",
-	title: "campagnola",
+	title: "neapolinata",
 	prices: [19.9, 25.9, 30.9],
 	desc: "Elit laborum consequat proident aute consequat cillum aliqua consequat. Consequat consectetur reprehenderit aute minim labore minim ut commodo pariatur ipsum. In magna Lorem commodo nulla do consequat amet. Fugiat nisi sint voluptate pariatur pariatur pariatur cillum velit amet labore dolore cillum esse ut. Non pariatur aliquip Lorem quis ut officia minim eiusmod nostrud amet enim esse cillum.",
 };
