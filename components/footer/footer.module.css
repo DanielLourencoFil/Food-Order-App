@@ -1,5 +1,5 @@
 .footer {
-	height: calc(100vh - var(--navbar));
+	min-height: calc(100vh - var(--navbar));
 	background-color: var(--dark-color-500);
 	display: flex;
 }
@@ -37,4 +37,18 @@
 .text {
 	color: var(--dark-color-100);
 	line-height: 1.35;
+}
+@media screen and (max-width: 600px) {
+	.bgImg {
+		display: none;
+	}
+	.footer {
+		height: auto;
+	}
+	.moto {
+		font-size: 1.1rem;
+	}
+	.text {
+		font-size: 0.875rem;
+	}
 }

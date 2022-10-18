@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 import { useLanguage } from "../../context/Language/LanguageContext";
 
 import { AiOutlinePhone, AiOutlineShoppingCart } from "react-icons/ai";
@@ -6,6 +8,15 @@ import styles from "./navbar.module.css";
 
 export const Navbar = () => {
 	const { languageTexts } = useLanguage();
+
+	// provisory data
+	const orderID = "absadsd324234";
+
+	const router = useRouter();
+
+	const goToCheckout = () => {
+		router.push(`/cart`);
+	};
 
 	return (
 		<nav className={`container ${styles.navbar}`}>
@@ -29,7 +40,10 @@ export const Navbar = () => {
 					<li>{languageTexts.navbar.menu[5]}</li>
 				</ul>
 				<div className={styles.cart}>
-					<AiOutlineShoppingCart className={styles.cartIcon} />
+					<AiOutlineShoppingCart
+						className={styles.cartIcon}
+						onClick={() => goToCheckout()}
+					/>
 					<div className={styles.cartNumber}>1</div>
 				</div>
 			</div>

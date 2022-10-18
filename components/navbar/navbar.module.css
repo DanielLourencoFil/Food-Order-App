@@ -5,6 +5,7 @@
 	z-index: 99;
 }
 .navCenter {
+	width: 90%;
 	height: 100px;
 	display: flex;
 	flex-direction: row;
@@ -64,6 +65,7 @@
 /*CART SECTION*/
 .cart {
 	position: relative;
+	cursor: pointer;
 }
 .cartIcon {
 	color: var(--light-color-500);
@@ -82,4 +84,23 @@
 	justify-content: center;
 	color: var(--primary-color-500);
 	font-weight: 700;
+}
+
+/* responsive */
+
+@media screen and (max-width: 480px) {
+	.navCenter {
+		width: 80%;
+	}
+	.menu {
+		display: none;
+	}
+}
+@media screen and (max-width: 1000px) {
+	.menu li {
+		display: none;
+	}
+	.menu .logo {
+		display: block;
+	}
 }

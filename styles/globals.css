@@ -24,6 +24,8 @@ li {
 }
 
 img {
+	max-width: 100%;
+	height: auto;
 	display: block;
 	height: auto;
 }
@@ -32,32 +34,22 @@ button {
 	cursor: pointer;
 }
 
-@media (prefers-color-scheme: dark) {
-	html {
-		color-scheme: dark;
-	}
-	body {
-		color: white;
-		background: black;
-	}
-}
-
 /*GENERAL CLASSES*/
 .container {
 	width: 100%;
 }
 .container-center {
 	max-width: 1400px;
-	width: 90%;
+	width: 80%;
 	margin: 0 auto;
 }
-@media (min-width: 800px) {
+@media screen and (max-width: 480px) {
 	.container-center {
-		width: 85%;
+		width: 90%;
 	}
 }
-@media (min-width: 1200px) {
+@media screen and (max-width: 1000px) {
 	.container-center {
-		width: 80%;
+		width: 85%;
 	}
 }

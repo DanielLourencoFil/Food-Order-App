@@ -7,23 +7,13 @@ import { useRouter } from "next/router";
 const singleProduct = {
 	id: 1,
 	img: "/images/pizza-card.png",
-	title: "neapolinata",
+	title: "neapolitane",
 	prices: [19.9, 25.9, 30.9],
 	desc: "Elit laborum consequat proident aute consequat cillum aliqua consequat. Consequat consectetur reprehenderit aute minim labore minim ut commodo pariatur ipsum. In magna Lorem commodo nulla do consequat amet. Fugiat nisi sint voluptate pariatur pariatur pariatur cillum velit amet labore dolore cillum esse ut. Non pariatur aliquip Lorem quis ut officia minim eiusmod nostrud amet enim esse cillum.",
 };
 
-interface Selection {
-	size: "small" | "medium" | "large";
-	index: 0 | 1 | 2;
-}
-
 const SinglePizza = () => {
-	const selectionDefault: Selection = {
-		size: "small",
-		index: 0,
-	};
-
-	const [isSelected, setIsSelected] = useState<Selection>(selectionDefault);
+	const [isSelected, setIsSelected] = useState<0 | 1 | 2>(0);
 
 	const { query } = useRouter();
 	console.log(query.id);
@@ -36,8 +26,7 @@ const SinglePizza = () => {
 					<Image
 						src={singleProduct.img}
 						alt="pizza"
-						width={500}
-						height={400}
+						layout="fill"
 						objectFit="contain"
 					/>
 				</div>
@@ -47,9 +36,7 @@ const SinglePizza = () => {
 					{/* info header */}
 					<article className={styles.productInfoHeader}>
 						<h1 className={styles.title}>{singleProduct.title}</h1>
-						<p className={styles.price}>
-							${singleProduct.prices[isSelected.index]}0
-						</p>
+						<p className={styles.price}>${singleProduct.prices[isSelected]}0</p>
 						<p className={styles.description}>{singleProduct.desc}</p>
 					</article>
 
@@ -59,7 +46,7 @@ const SinglePizza = () => {
 						<div className={styles.sizesContainer}>
 							<div
 								className={styles.sizeIconContainer}
-								onClick={() => setIsSelected({ size: "small", index: 0 })}
+								onClick={() => setIsSelected(0)}
 							>
 								<Image
 									src="/images/size.png"
@@ -69,7 +56,7 @@ const SinglePizza = () => {
 								/>
 								<p
 									className={` ${styles.sizeText} ${
-										isSelected.size === "small" ? styles.isSelected : null
+										isSelected === 0 ? styles.isSelected : null
 									}`}
 								>
 									small
@@ -77,7 +64,7 @@ const SinglePizza = () => {
 							</div>
 							<div
 								className={styles.sizeIconContainer}
-								onClick={() => setIsSelected({ size: "medium", index: 1 })}
+								onClick={() => setIsSelected(1)}
 							>
 								<Image
 									src="/images/size.png"
@@ -87,7 +74,7 @@ const SinglePizza = () => {
 								/>
 								<p
 									className={` ${styles.sizeText} ${
-										isSelected.size === "medium" ? styles.isSelected : null
+										isSelected === 1 ? styles.isSelected : null
 									}`}
 								>
 									medium
@@ -95,7 +82,7 @@ const SinglePizza = () => {
 							</div>
 							<div
 								className={styles.sizeIconContainer}
-								onClick={() => setIsSelected({ size: "large", index: 2 })}
+								onClick={() => setIsSelected(2)}
 							>
 								<Image
 									src="/images/size.png"
@@ -105,7 +92,7 @@ const SinglePizza = () => {
 								/>
 								<p
 									className={` ${styles.sizeText} ${
-										isSelected.size === "large" ? styles.isSelected : null
+										isSelected === 2 ? styles.isSelected : null
 									}`}
 								>
 									large
@@ -121,23 +108,23 @@ const SinglePizza = () => {
 						</h1>
 						<div className={styles.checkBoxesContainer}>
 							<div className={styles.checkBox}>
-								<input type="checkbox" name="double topings" />
-								<label htmlFor="double topings">Double topings</label>
+								<input type="checkbox" name="double" id="double" />
+								<label htmlFor="double">Double topings</label>
 							</div>
 
 							<div className={styles.checkBox}>
-								<input type="checkbox" name="extra cheese" />
-								<label htmlFor="extra cheese">extra cheese</label>
+								<input type="checkbox" name="extra" id="extra" />
+								<label htmlFor="extra">extra cheese</label>
 							</div>
 
 							<div className={styles.checkBox}>
-								<input type="checkbox" name="spicy sauce" />
-								<label htmlFor="spicy sauce">spicy sauce</label>
+								<input type="checkbox" name="spicy" id="spicy" />
+								<label htmlFor="spicy">spicy sauce</label>
 							</div>
 
 							<div className={styles.checkBox}>
-								<input type="checkbox" name="garlic sauce" />
-								<label htmlFor="garlic sauce">garlic sauce</label>
+								<input type="checkbox" name="garlic" id="garlic" />
+								<label htmlFor="garlic">garlic sauce</label>
 							</div>
 						</div>
 					</article>

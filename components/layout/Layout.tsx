@@ -11,9 +11,9 @@ interface Props {
 export const Layout = ({ children }: Props) => {
 	return (
 		<div className={styles.container}>
-			<Navbar></Navbar>
+			<Navbar />
 			{children}
-			<Footer></Footer>
+			<Footer />
 		</div>
 	);
 };
