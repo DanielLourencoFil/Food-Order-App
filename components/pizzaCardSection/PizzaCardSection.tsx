@@ -4,7 +4,9 @@ import React from "react";
 import { useLanguage } from "../../context/Language/LanguageContext";
 import { PizzaCard } from "./PizzaCard";
 
-export const PizzaCardSection = () => {
+import { PizzaList } from "../../interface";
+
+export const PizzaCardSection = ({ pizzaList }: PizzaList) => {
 	const { languageTexts } = useLanguage();
 
 	return (
@@ -16,14 +18,9 @@ export const PizzaCardSection = () => {
 				</p>
 			</div>
 			<div className={`container-center ${styles.pizzaCardContainer}`}>
-				<PizzaCard />
-				<PizzaCard />
-				<PizzaCard />
-				<PizzaCard />
-				<PizzaCard />
-				<PizzaCard />
-				<PizzaCard />
-				<PizzaCard />
+				{pizzaList.map((pizza) => {
+					return <PizzaCard key={pizza._id} pizza={pizza} />;
+				})}
 			</div>
 		</div>
 	);

@@ -1,32 +1,27 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 import styles from "./pizzaCard.module.css";
 import { useLanguage } from "../../context";
+import { Pizza } from "../../interface";
 
-export const PizzaCard = () => {
+interface PizzaProps {
+	pizza: Pizza;
+}
+
+export const PizzaCard = ({ pizza }: PizzaProps) => {
 	const { languageTexts } = useLanguage();
 
-	// just for testing
-	const router = useRouter();
-	const id = 1;
-	const navigate = () => {
-		router.push(`/product/${id}`);
-	};
-
 	return (
-		<div className={styles.card} onClick={navigate}>
-			<Image src="/images/pizza.png" alt="pizza" width={200} height={200} />
-			<h1 className={styles.cardTitle}>
-				{languageTexts.pizzaCardSection.pizzaCard.tittle}
-			</h1>
-			<p
-				className={styles.cardPrice}
-			>{`$ ${languageTexts.pizzaCardSection.pizzaCard.price}`}</p>
-			<p className={styles.cardDesc}>
-				{languageTexts.pizzaCardSection.pizzaCard.desc}
-			</p>
-		</div>
+		<Link href={`/products/${pizza._id}`}>
+			<div className={styles.card}>
+				<Image src={pizza.img} alt={pizza.title} width={200} height={200} />
+				<h1 className={styles.cardTitle}>{pizza.title}</h1>
+				<p className={styles.cardPrice}>{`$ ${pizza.prices[0]},0`}</p>
+				<p className={styles.cardDesc}>{pizza.desc}</p>
+			</div>
+		</Link>
 	);
 };

@@ -1,11 +1,15 @@
 import type { NextPage } from "next";
+import { GetServerSideProps } from "next";
+
 import Head from "next/head";
 import { useLanguage } from "../context/Language/LanguageContext";
 
 import { ChangeLanguageBtn } from "../components/buttons/ChangeLanguageBtn";
 import { Hero, PizzaCardSection } from "../components";
 
-const Home: NextPage = () => {
+import axios from "axios";
+
+const Home: NextPage = ({ pizzaList }: any) => {
 	const { languageTexts, currentLanguage, setCurrentLanguage } = useLanguage();
 
 	return (
@@ -17,7 +21,7 @@ const Home: NextPage = () => {
 			</Head>
 			<div>
 				<Hero />
-				<PizzaCardSection />
+				<PizzaCardSection pizzaList={pizzaList} />
 				{/* <ChangeLanguageBtn language="english" text="EN" />
 				<ChangeLanguageBtn language="portugues" text="BR" /> */}
 			</div>
@@ -26,3 +30,13 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+	const res = await axios.get("http://localhost:3000/api/products");
+
+	return {
+		props: {
+			pizzaList: res.data,
+		},
+	};
+};

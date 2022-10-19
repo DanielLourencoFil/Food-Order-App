@@ -1,7 +1,7 @@
 .heroContainer {
 	position: relative;
 	background-color: var(--primary-color-500);
-	overflow-x: hidden;
+	overflow: hidden;
 	height: calc(100vh - var(--navbar));
 }
 .hero {

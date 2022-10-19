@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 
 import { useLanguage } from "../../context/Language/LanguageContext";
+import Link from "next/link";
 
 import { AiOutlinePhone, AiOutlineShoppingCart } from "react-icons/ai";
 
@@ -31,7 +32,9 @@ export const Navbar = () => {
 					</div>
 				</div>
 				<ul className={styles.menu}>
-					<li>{languageTexts.navbar.menu[0]}</li>
+					<li>
+						<Link href="/">{languageTexts.navbar.menu[0]}</Link>
+					</li>
 					<li>{languageTexts.navbar.menu[1]}</li>
 					<li>{languageTexts.navbar.menu[2]}</li>
 					<li className={styles.logo}>DonDani</li>

@@ -21,8 +21,7 @@
 	flex-direction: column;
 	gap: 1.5rem;
 }
-.productInfoHeader {
-}
+
 .title {
 	font-size: 2rem;
 	text-transform: uppercase;
@@ -113,5 +112,20 @@
 		padding: 2rem 0;
 	}
 	.imgContainer {
+		width: 60vw;
+	}
+	.productInfoContainer {
+		width: 90%;
+	}
+	/* .topingsContainer {
+		width: 90%;
+	}*/
+	.checkBoxesContainer {
+		width: 90%;
+		flex-wrap: wrap;
+		gap: 1.5rem 0;
+	}
+	.checkBox {
+		width: 50%;
 	}
 }
