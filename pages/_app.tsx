@@ -1,4 +1,6 @@
 import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 
 import { Layout } from "../components";
 import { LanguageProvider } from "../context";
@@ -8,11 +10,13 @@ import "../styles/variables.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<LanguageProvider>
-			<Layout>
-				<Component {...pageProps} />
-			</Layout>
-		</LanguageProvider>
+		<Provider store={store}>
+			<LanguageProvider>
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
+			</LanguageProvider>
+		</Provider>
 	);
 }
 

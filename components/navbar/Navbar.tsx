@@ -6,9 +6,12 @@ import Link from "next/link";
 import { AiOutlinePhone, AiOutlineShoppingCart } from "react-icons/ai";
 
 import styles from "./navbar.module.css";
+import { useAppSelector } from "../../redux/hooks";
 
 export const Navbar = () => {
 	const { languageTexts } = useLanguage();
+
+	const cart = useAppSelector((store) => store.cart);
 
 	// provisory data
 	const orderID = "absadsd324234";
@@ -47,7 +50,9 @@ export const Navbar = () => {
 						className={styles.cartIcon}
 						onClick={() => goToCheckout()}
 					/>
-					<div className={styles.cartNumber}>1</div>
+					{cart.quantity > 0 && (
+						<span className={styles.cartNumber}>{cart.quantity}</span>
+					)}
 				</div>
 			</div>
 		</nav>

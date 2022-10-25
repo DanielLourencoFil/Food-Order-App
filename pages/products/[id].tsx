@@ -11,6 +11,8 @@ import axios from "axios";
 
 import styles from "../../styles/singlePizza.module.css";
 import { ExtraOption } from "../../interface/product";
+import { useAppDispatch } from "../../redux/hooks";
+import { addProduct } from "../../redux/cartSlice";
 
 // const pizza = {
 // 	id: 1,
@@ -26,8 +28,10 @@ interface PizzaProps {
 
 const SinglePizza = ({ pizza }: PizzaProps) => {
 	const [size, setSize] = useState<0 | 1 | 2>(2);
-	const [extraIngredients, setExtraIngredients] = useState<ExtraOption[]>([]);
+	const [extras, setExtras] = useState<ExtraOption[]>([]);
 	const [quantity, setQuantity] = useState<number>(1);
+
+	const dispatch = useAppDispatch();
 
 	const addToCart = () => {
 		let sizeText = "";
@@ -40,36 +44,41 @@ const SinglePizza = ({ pizza }: PizzaProps) => {
 		if (size === 2) {
 			sizeText = "large";
 		}
+		const extrasIngredients = extras.map((item) => item.topping);
+
 		const order = {
-			pizza: pizza.title,
+			_id: pizza._id,
+			img: pizza.img,
+			name: pizza.title,
 			size: sizeText,
-			extraIngredients,
+			price: calcPrice(),
+			extras: extrasIngredients,
 			quantity,
 			total: calcPrice() * quantity,
 		};
+		dispatch(addProduct(order));
 		console.log("added to cart", order);
 	};
 
 	const addExtraPrice = (checked: boolean, ingredient: ExtraOption) => {
 		if (checked) {
-			setExtraIngredients((prev) => {
+			setExtras((prev) => {
 				return [...prev, ingredient];
 			});
 		}
 		if (!checked && checked !== undefined) {
-			setExtraIngredients((prev) => {
+			setExtras((prev) => {
 				const removeIngredientSelected = prev.filter(
-					(intem) => intem._id !== ingredient._id
+					(item) => item._id !== ingredient._id
 				);
 				return removeIngredientSelected;
 			});
 		}
 	};
-	console.log(extraIngredients);
 
 	const calcPrice = () => {
 		let ingredientsValue = 0;
-		extraIngredients.map((ingredient) => {
+		extras.map((ingredient) => {
 			ingredientsValue = ingredientsValue + ingredient.price[size];
 		});
 
@@ -95,7 +104,7 @@ const SinglePizza = ({ pizza }: PizzaProps) => {
 					<article className={styles.productInfoHeader}>
 						<h1 className={styles.title}>{pizza.title}</h1>
 						<p className={styles.price}>
-							${calcPrice()}
+							${calcPrice() * quantity}
 							,0
 						</p>
 						<p className={styles.description}>{pizza.desc}</p>
