@@ -15,6 +15,12 @@
 		"jsx": "preserve",
 		"incremental": true
 	},
-	"include": ["/utils/global.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": [
+		"/utils/global.d.ts",
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"components/buttons/PaypalBtn.jsx"
+	],
 	"exclude": ["node_modules"]
 }

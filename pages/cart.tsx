@@ -1,30 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import CheckoutCart from "../components/checkoutCart/CheckoutCart";
+import { PaypalBtn, CashOnDeliveryBtn } from "../components";
+
 import Image from "next/image";
 
-import styles from "../styles/cart.module.css";
-import CheckoutCart from "../components/checkoutCart/CheckoutCart";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 
-// const order = [
-// {
-// 	orderId: "abc12",
-// 	image: "/images/pizza05.png",
-// 	name: "neapolitan",
-// 	price: 29.9,
-// 	extras: ["spyce souce", "double ingredients"],
-// 	quantity: 2,
-// },
-// {
-// 	orderId: "gsdf23",
-// 	image: "/images/pizza04.png",
-// 	name: "calabreza",
-// 	price: 29.9,
-// 	extras: ["extra cheese", "double ingredients"],
-// 	quantity: 1,
-// },
-// ];
+import styles from "../styles/cart.module.css";
 
 function Cart() {
+	const [isCheckout, setIsCheckout] = useState<boolean>(false);
 	const cart = useAppSelector((state) => state.cart);
 	console.log(cart, "from cart");
 
@@ -75,7 +60,21 @@ function Cart() {
 
 				{/* CART TOTAL */}
 				<CheckoutCart>
-					<button className={styles.checkoutBtn}>checkout</button>
+					<>
+						{!isCheckout ? (
+							<button
+								className={styles.checkoutBtn}
+								onClick={() => setIsCheckout(true)}
+							>
+								checkout
+							</button>
+						) : (
+							<>
+								<CashOnDeliveryBtn />
+								<PaypalBtn></PaypalBtn>
+							</>
+						)}
+					</>
 				</CheckoutCart>
 			</div>
 		</section>
