@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import Image from "next/image";
+import { GetServerSideProps } from "next";
 
 import CheckoutCart from "../../components/checkoutCart/CheckoutCart";
 
@@ -155,3 +156,16 @@ export const Order = () => {
 	);
 };
 export default Order;
+
+// You should use getServerSideProps when:
+// - Only if you need to pre-render a page whose data must be fetched at request time
+
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+// 	const { data } = await  // your fetch function here
+
+// 	return {
+// 		props: {
+
+// 		}
+// 	}
+// }

@@ -2,15 +2,11 @@ import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema(
 	{
-		orderId: {
-			type: String,
-			required: true,
-		},
 		customer: {
 			type: String,
 			required: true,
 		},
-		adress: {
+		address: {
 			type: String,
 			required: true,
 		},
@@ -18,17 +14,13 @@ const OrderSchema = new mongoose.Schema(
 			type: Number,
 			required: true,
 		},
-		paymentMethods: {
-			type: [String],
+		status: {
+			type: Number,
 			required: true,
+			default: 0,
 		},
-		orderStatus: {
-			type: {
-				payment: { type: Number, default: 0 },
-				preparing: { type: Number, default: 0 },
-				onWay: { type: Number, default: 0 },
-				delivered: { type: Number, default: 0 },
-			},
+		method: {
+			type: Number,
 			required: true,
 		},
 	},
@@ -36,3 +28,17 @@ const OrderSchema = new mongoose.Schema(
 );
 
 export default mongoose.models.Order || mongoose.model("Order", OrderSchema);
+
+// orderId: {
+// 	type: String,
+// 	required: true,
+// },
+// orderStatus: {
+// 	type: {
+// 		payment: { type: Number, default: 0 },
+// 		preparing: { type: Number, default: 0 },
+// 		onWay: { type: Number, default: 0 },
+// 		delivered: { type: Number, default: 0 },
+// 	},
+// 	required: true,
+// },

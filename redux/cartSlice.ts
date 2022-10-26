@@ -4,6 +4,7 @@ import { CartOrder, OrderSingle } from "../interface/order";
 
 const initialState: CartOrder = {
 	products: [],
+
 	quantity: 0,
 	total: 0,
 };

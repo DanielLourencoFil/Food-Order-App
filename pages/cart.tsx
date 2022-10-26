@@ -3,15 +3,32 @@ import CheckoutCart from "../components/checkoutCart/CheckoutCart";
 import { PaypalBtn, CashOnDeliveryBtn } from "../components";
 
 import Image from "next/image";
+import { useRouter } from "next/router";
 
-import { useAppSelector } from "../redux/hooks";
+import axios from "axios";
+
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { resetCart } from "../redux/cartSlice";
 
 import styles from "../styles/cart.module.css";
 
 function Cart() {
 	const [isCheckout, setIsCheckout] = useState<boolean>(false);
 	const cart = useAppSelector((state) => state.cart);
-	console.log(cart, "from cart");
+	const dispatch = useAppDispatch();
+	const router = useRouter();
+
+	const createOrder = async (data: any) => {
+		console.log(data, "from createOrder func");
+
+		try {
+			const res = await axios.post("http://localhost:3000/api/orders", data);
+			res.status === 201 && router.push("/order/" + res.data._id);
+			dispatch(resetCart());
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<section className={` container ${styles.orderCartContainer}`}>
@@ -71,7 +88,7 @@ function Cart() {
 						) : (
 							<>
 								<CashOnDeliveryBtn />
-								<PaypalBtn></PaypalBtn>
+								<PaypalBtn cart={cart} createOrder={createOrder} />
 							</>
 						)}
 					</>
