@@ -3,11 +3,18 @@ import { useState } from "react";
 import Image from "next/image";
 import { GetServerSideProps } from "next";
 
+import axios from "axios";
+
 import CheckoutCart from "../../components/checkoutCart/CheckoutCart";
 
 import styles from "../../styles/order.module.css";
+import { OrderSubmited } from "../../interface/order";
 
-export const Order = () => {
+interface Props {
+	order: OrderSubmited;
+}
+
+export const Order = ({ order }: Props) => {
 	// status: 0 - not ready
 	// 1 - starting
 	// 2 - done
@@ -20,39 +27,32 @@ export const Order = () => {
 	};
 	const [isChecked, setIsChecked] = useState(orderStatus);
 
-	const order = {
-		orderId: "abc12",
-		customer: "John Doe",
-		adress: "San Martin St, 4879",
-		total: 29.9,
-	};
-
 	return (
 		<section className={` container ${styles.orderCartContainer}`}>
 			<div className={`container-center ${styles.orderCart}`}>
 				<div className={styles.orderInfoContainer}>
 					<table className={styles.table}>
 						{/* header */}
-						<tr className={styles.row}>
-							<th className={styles.cell}>Order ID</th>
-							<th className={styles.cell}>Customer</th>
-							<th className={styles.cell}>Adress</th>
-							<th className={styles.cell}>Total</th>
-						</tr>
-						<tr className={styles.cell}>
-							<td className={styles.cell}>{order.orderId}</td>
-							<td className={styles.cell}>{order.customer}</td>
-							<td className={styles.cell}>{order.adress}</td>
-							<td className={styles.cell}>{order.total}</td>
-						</tr>
+						<thead>
+							<tr className={styles.row}>
+								<th className={styles.cell}>Order ID</th>
+								<th className={styles.cell}>Customer</th>
+								<th className={styles.cell}>Address</th>
+								<th className={styles.cell}>Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr className={styles.cell}>
+								<td className={styles.cell}>{order._id}</td>
+								<td className={styles.cell}>{order.customer}</td>
+								<td className={styles.cell}>{order.address}</td>
+								<td className={styles.cell}>{order.total}</td>
+							</tr>
+						</tbody>
 					</table>
 					{/* order progress icons */}
 					<div className={styles.orderIconsContainer}>
-						<div
-							className={`${styles.iconContainer} ${
-								orderStatus.payment === 1 && styles.starting
-							} ${orderStatus.payment === 0 && styles.notReady}`}
-						>
+						<div className={`${styles.iconContainer} `}>
 							<Image
 								src="/images/paid.png"
 								width={40}
@@ -67,15 +67,13 @@ export const Order = () => {
 								height={20}
 								alt="checked-icon"
 								objectFit="contain"
-								className={`${styles.checkedIcon} ${
-									isChecked.payment === 2 ? styles.showIcon : null
-								}`}
+								className={`${styles.checkedIcon} ${styles.showIcon}`}
 							/>
 						</div>
 						<div
 							className={`${styles.iconContainer} ${
-								orderStatus.preparing === 1 && styles.starting
-							} ${orderStatus.preparing === 0 && styles.notReady}`}
+								order.status === 0 && styles.starting
+							} `}
 						>
 							<Image
 								src="/images/bake.png"
@@ -92,14 +90,14 @@ export const Order = () => {
 								alt="cocking-icon"
 								objectFit="contain"
 								className={`${styles.checkedIcon} ${
-									isChecked.preparing === 2 ? styles.showIcon : null
+									order.status < 3 && order.status !== 0 && styles.showIcon
 								}`}
 							/>
 						</div>
 						<div
 							className={`${styles.iconContainer} ${
-								orderStatus.onWay === 1 && styles.starting
-							} ${orderStatus.onWay === 0 && styles.notReady}`}
+								order.status === 1 && styles.starting
+							} `}
 						>
 							<Image
 								src="/images/bike.png"
@@ -116,14 +114,14 @@ export const Order = () => {
 								alt="checked-icon"
 								objectFit="contain"
 								className={`${styles.checkedIcon} ${
-									isChecked.onWay === 2 ? styles.showIcon : null
+									order.status <= 2 && styles.showIco
 								}`}
 							/>
 						</div>
 						<div
 							className={`${styles.iconContainer} ${
-								orderStatus.delivered === 1 && styles.starting
-							} ${orderStatus.delivered === 0 && styles.notReady}`}
+								order.status === 2 && styles.starting
+							} ${order.status < 2 && styles.notReady}`}
 						>
 							<Image
 								src="/images/delivered.png"
@@ -160,12 +158,11 @@ export default Order;
 // You should use getServerSideProps when:
 // - Only if you need to pre-render a page whose data must be fetched at request time
 
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-// 	const { data } = await  // your fetch function here
-
-// 	return {
-// 		props: {
-
-// 		}
-// 	}
-// }
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+	const res = await axios.get(`http://localhost:3000/api/orders/${params?.id}`);
+	return {
+		props: {
+			order: res.data,
+		},
+	};
+};
