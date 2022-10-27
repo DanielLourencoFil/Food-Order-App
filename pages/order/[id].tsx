@@ -90,14 +90,14 @@ export const Order = ({ order }: Props) => {
 								alt="cocking-icon"
 								objectFit="contain"
 								className={`${styles.checkedIcon} ${
-									order.status < 3 && order.status !== 0 && styles.showIcon
+									order.status >= 1 && styles.showIcon
 								}`}
 							/>
 						</div>
 						<div
 							className={`${styles.iconContainer} ${
 								order.status === 1 && styles.starting
-							} `}
+							} ${order.status === 0 && styles.notReady}`}
 						>
 							<Image
 								src="/images/bike.png"
@@ -114,14 +114,15 @@ export const Order = ({ order }: Props) => {
 								alt="checked-icon"
 								objectFit="contain"
 								className={`${styles.checkedIcon} ${
-									order.status <= 2 && styles.showIco
+									order.status >= 2 && styles.showIcon
 								}`}
 							/>
 						</div>
+
 						<div
 							className={`${styles.iconContainer} ${
 								order.status === 2 && styles.starting
-							} ${order.status < 2 && styles.notReady}`}
+							} ${order.status <= 1 && styles.notReady}`}
 						>
 							<Image
 								src="/images/delivered.png"
@@ -138,7 +139,7 @@ export const Order = ({ order }: Props) => {
 								alt="checked-icon"
 								objectFit="contain"
 								className={`${styles.checkedIcon} ${styles.checkedIcon} ${
-									isChecked.delivered === 2 ? styles.showIcon : null
+									order.status >= 3 && styles.showIcon
 								}`}
 							/>
 						</div>
