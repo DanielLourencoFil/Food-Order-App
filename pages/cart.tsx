@@ -1,6 +1,10 @@
 import { useState } from "react";
 import CheckoutCart from "../components/checkoutCart/CheckoutCart";
-import { PaypalBtn, CashOnDeliveryBtn } from "../components";
+import {
+	PaypalBtn,
+	CashOnDeliveryBtn,
+	CashPaymentClientDetails,
+} from "../components";
 
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -10,15 +14,20 @@ import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { resetCart } from "../redux/cartSlice";
 
+import { OrderSubmitedBasic } from "../interface/order";
+
 import styles from "../styles/cart.module.css";
 
 function Cart() {
 	const [isCheckout, setIsCheckout] = useState<boolean>(false);
+	const [isCash, setIsCash] = useState<boolean>(false);
 	const cart = useAppSelector((state) => state.cart);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
-	const createOrder = async (data: any) => {
+	console.log(isCash);
+
+	const createOrder = async (data: OrderSubmitedBasic) => {
 		try {
 			const res = await axios.post("http://localhost:3000/api/orders", data);
 			res.status === 201 && router.push("/order/" + res.data._id);
@@ -27,7 +36,18 @@ function Cart() {
 			console.log(error);
 		}
 	};
-
+	if (cart.total === 0) {
+		return (
+			<section className={` container ${styles.orderCartContainer}`}>
+				<div
+					className={`container-center ${styles.orderCart}`}
+					style={{ alignItems: "center", justifyContent: "center" }}
+				>
+					<h1>Your cart is empty, please order something!</h1>
+				</div>
+			</section>
+		);
+	}
 	return (
 		<section className={` container ${styles.orderCartContainer}`}>
 			<div className={`container-center ${styles.orderCart}`}>
@@ -81,17 +101,24 @@ function Cart() {
 								className={styles.checkoutBtn}
 								onClick={() => setIsCheckout(true)}
 							>
-								checkout
+								checkout now
 							</button>
 						) : (
 							<>
-								<CashOnDeliveryBtn />
+								<CashOnDeliveryBtn setIsCash={setIsCash} />
 								<PaypalBtn cart={cart} createOrder={createOrder} />
 							</>
 						)}
 					</>
 				</CheckoutCart>
 			</div>
+			{isCash && (
+				<CashPaymentClientDetails
+					setIsCash={setIsCash}
+					isCash={isCash}
+					createOrder={createOrder}
+				/>
+			)}
 		</section>
 	);
 }

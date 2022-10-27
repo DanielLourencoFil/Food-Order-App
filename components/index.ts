@@ -6,3 +6,5 @@ export * from "./pizzaCardSection/PizzaCardSection";
 
 export * from "./buttons/PaypalBtn";
 export * from "./buttons/CashOnDeliveryBtn";
+
+export * from "./modals/CashPaymentClientDetails";
