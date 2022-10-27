@@ -15,17 +15,13 @@ interface Props {
 }
 
 export const Order = ({ order }: Props) => {
-	// status: 0 - not ready
-	// 1 - starting
-	// 2 - done
+	// order.status:
+	// 0 - payment
+	// 1 - preparing
+	// 2 - on the way
+	// 3 - delivered
 
-	const orderStatus = {
-		payment: 2,
-		preparing: 1,
-		onWay: 0,
-		delivered: 0,
-	};
-	const [isChecked, setIsChecked] = useState(orderStatus);
+	// const [isChecked, setIsChecked] = useState(order.status);
 
 	return (
 		<section className={` container ${styles.orderCartContainer}`}>
@@ -147,7 +143,7 @@ export const Order = ({ order }: Props) => {
 				</div>
 
 				{/* CART TOTAL */}
-				<CheckoutCart>
+				<CheckoutCart total={order.total}>
 					<button className={styles.orderBtn}>paid</button>
 				</CheckoutCart>
 			</div>

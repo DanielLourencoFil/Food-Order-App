@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CheckoutCart from "../components/checkoutCart/CheckoutCart";
 import { PaypalBtn, CashOnDeliveryBtn } from "../components";
 
@@ -19,8 +19,6 @@ function Cart() {
 	const router = useRouter();
 
 	const createOrder = async (data: any) => {
-		console.log(data, "from createOrder func");
-
 		try {
 			const res = await axios.post("http://localhost:3000/api/orders", data);
 			res.status === 201 && router.push("/order/" + res.data._id);
@@ -76,7 +74,7 @@ function Cart() {
 				</table>
 
 				{/* CART TOTAL */}
-				<CheckoutCart>
+				<CheckoutCart total={cart.total}>
 					<>
 						{!isCheckout ? (
 							<button

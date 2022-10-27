@@ -40,7 +40,9 @@ export const Navbar = () => {
 					</li>
 					<li>{languageTexts.navbar.menu[1]}</li>
 					<li>{languageTexts.navbar.menu[2]}</li>
-					<li className={styles.logo}>DonDani</li>
+					<li className={styles.logo}>
+						<Link href={"/"}> DonDani </Link>
+					</li>
 					<li>{languageTexts.navbar.menu[3]}</li>
 					<li>{languageTexts.navbar.menu[4]}</li>
 					<li>{languageTexts.navbar.menu[5]}</li>

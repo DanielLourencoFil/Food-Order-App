@@ -5,10 +5,11 @@ import { useAppSelector } from "../../redux/hooks";
 
 interface Props {
 	children: ReactNode;
+	total: number;
 }
 
-const CheckoutCart = ({ children }: Props) => {
-	const total = useAppSelector((state) => state.cart.total);
+const CheckoutCart = ({ children, total }: Props) => {
+	// const total = useAppSelector((state) => state.cart.total);
 	return (
 		<div className={styles.cartTotal}>
 			<div className={styles.cartInfoContainer}>
