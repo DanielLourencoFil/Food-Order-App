@@ -26,6 +26,7 @@ export interface OrderSubmited extends OrderSubmitedBasic {
 
 export interface OrderSubmitedBasic {
 	customer: string;
+	phone: string;
 	address: string;
 	total: number;
 	status: number;
