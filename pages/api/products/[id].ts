@@ -33,8 +33,8 @@ export default async function handler(
 	}
 	if (method === "DELETE") {
 		try {
-			const product = Product.create(body);
-			res.status(201).json("product created");
+			await Product.findByIdAndDelete(id);
+			res.status(200).json("product deleted");
 		} catch (error) {
 			res.status(500).json({ error });
 		}

@@ -60,6 +60,7 @@ const ButtonWrapper = ({ currency, showSpinner, cart, createOrder }) => {
 						const shipping = details.purchase_units[0].shipping;
 						const order = {
 							customer: shipping.name.full_name,
+							phone: shipping.phone_number.national_number,
 							address: `${shipping.address.address_line_1}, ${shipping.address.admin_area_1}, ${shipping.address.admin_area_2}: ${shipping.address.postal_code}`,
 							total: cart.total,
 							status: 0,

@@ -1,4 +1,3 @@
-import { OrderSubmited, OrderSubmitedBasic } from "./order";
 export interface CartOrder {
 	// orderId?: String;
 	products?: OrderSingle[];

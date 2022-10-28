@@ -21,6 +21,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		}
 	}
 	if (method === "PUT") {
+		try {
+			await Order.findByIdAndUpdate(id, req.body);
+		} catch (error) {
+			res.status(500).json(error);
+		}
 	}
 	if (method === "DELETE") {
 	}

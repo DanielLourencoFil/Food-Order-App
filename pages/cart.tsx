@@ -1,24 +1,33 @@
+//REACT
 import { useState } from "react";
 import CheckoutCart from "../components/checkoutCart/CheckoutCart";
+
+//NEXT
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { NextPage } from "next";
+
+//REDUX
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { resetCart } from "../redux/cartSlice";
+
+//AXIOS
+import axios from "axios";
+
+//COMPOMENTS
 import {
 	PaypalBtn,
 	CashOnDeliveryBtn,
 	CashPaymentClientDetails,
 } from "../components";
 
-import Image from "next/image";
-import { useRouter } from "next/router";
-
-import axios from "axios";
-
-import { useAppSelector, useAppDispatch } from "../redux/hooks";
-import { resetCart } from "../redux/cartSlice";
-
+//INTERFACE
 import { OrderSubmitedBasic } from "../interface/order";
 
+//CSS
 import styles from "../styles/cart.module.css";
 
-function Cart() {
+const Cart: NextPage = () => {
 	const [isCheckout, setIsCheckout] = useState<boolean>(false);
 	const [isCash, setIsCash] = useState<boolean>(false);
 	const cart = useAppSelector((state) => state.cart);
@@ -121,6 +130,6 @@ function Cart() {
 			)}
 		</section>
 	);
-}
+};
 
 export default Cart;
