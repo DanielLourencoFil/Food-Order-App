@@ -22,7 +22,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 	if (method === "PUT") {
 		try {
-			await Order.findByIdAndUpdate(id, req.body);
+			const order = await Order.findByIdAndUpdate(id, req.body, { new: true });
+			console.log(order);
+
+			res.status(200).json(order);
 		} catch (error) {
 			res.status(500).json(error);
 		}
