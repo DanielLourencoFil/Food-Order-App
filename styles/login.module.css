@@ -1,0 +1,29 @@
+.login {
+	height: calc(100vh - var(--navbar));
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.form {
+	display: flex;
+	/* align-items: center;
+	justify-content: center; */
+	flex-direction: column;
+	/* border: 1px solid var(--dark-color-500); */
+	width: 50vw;
+	max-width: 350px;
+	height: 60vh;
+	min-height: 250px;
+	padding: 2rem;
+	border-radius: 5px;
+	box-shadow: 1px 5px 15px rgba(145, 145, 145, 0.77);
+}
+.inputContainer {
+	display: flex;
+	align-items: center;
+}
+.password {
+	flex: 1;
+	/* height: 20px;
+	width: 90%; */
+}

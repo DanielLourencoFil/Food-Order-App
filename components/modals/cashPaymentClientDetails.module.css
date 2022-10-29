@@ -1,0 +1,87 @@
+.container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	place-items: center;
+	background-color: rgba(0, 0, 0, 0.7);
+	z-index: 9999;
+	transform: scale(0);
+	/* transition: all 1s 0.2s; */
+}
+.openContainer {
+	animation: open 1s ease-in-out forwards;
+}
+@keyframes open {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+.closeBtn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 1.75rem;
+	font-weight: 700;
+	color: var(--light-color-500);
+	border: none;
+	background-color: transparent;
+	padding: 1.5rem;
+	transition: all 0.5s;
+}
+.closeBtn:hover {
+	color: red;
+}
+
+.modal {
+	background-color: var(--light-color-500);
+	width: 80%;
+	max-width: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem;
+	padding: 2rem;
+}
+.title {
+	font: 2rem;
+	margin-bottom: 2rem;
+}
+.title span {
+	font: 2rem;
+	color: var(--primary-color-500);
+}
+.modal label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	width: 100%;
+	font-size: 0.875rem;
+	text-transform: capitalize;
+}
+.modal input {
+	padding: 0.2rem;
+	font-size: 1rem;
+}
+.confirmBtn {
+	align-self: flex-end;
+	border: 1px solid transparent;
+	background-color: var(--terceary-color-500);
+	color: var(--light-color-500);
+	padding: 0.5rem 2rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-family: var(--primary-font);
+	font-weight: 500;
+	font-size: 0.8rem;
+	transition: opacity, 0.3s;
+}
+.confirmBtn:hover {
+	opacity: 0.85;
+}

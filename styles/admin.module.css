@@ -1,0 +1,43 @@
+.adminContainer {
+	color: var(--dark-color-500);
+	min-height: calc(100vh - var(--navbar));
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.title {
+	font-size: 2rem;
+}
+.adminSection {
+	flex: 1;
+	flex-wrap: wrap;
+}
+
+.table {
+	text-align: start;
+	/* width: 100%; */
+	border-spacing: 1.5rem;
+	margin-top: 2rem;
+}
+
+.btnContainer {
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+}
+.btn {
+	padding: 0.2rem 0.75rem;
+	color: var(--light-color-500);
+	border: none;
+	transition: opacity 0.3s;
+}
+.btn:first-child {
+	background-color: var(--terceary-color-500);
+	margin-right: 2px;
+}
+.btn:last-child {
+	background-color: var(--primary-color-500);
+}
+.btn:hover {
+	opacity: 0.7;
+}
