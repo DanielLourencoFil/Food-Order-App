@@ -6,10 +6,7 @@
 }
 .form {
 	display: flex;
-	/* align-items: center;
-	justify-content: center; */
 	flex-direction: column;
-	/* border: 1px solid var(--dark-color-500); */
 	width: 50vw;
 	max-width: 350px;
 	height: 60vh;
@@ -18,12 +15,79 @@
 	border-radius: 5px;
 	box-shadow: 1px 5px 15px rgba(145, 145, 145, 0.77);
 }
+.form label {
+	margin-bottom: 0.5rem;
+	margin-top: 1rem;
+}
+
+.username {
+	border-radius: 3px;
+	border: 1px solid var(--dark-color-500);
+	padding: 0.3rem;
+}
+.username:focus {
+	outline: 1px solid var(--primary-color-500);
+	border-color: transparent;
+}
 .inputContainer {
 	display: flex;
 	align-items: center;
+	border: 1px solid var(--dark-color-500);
+	border-radius: 3px;
+	padding: 0.3rem;
 }
+.inputContainer.focus {
+	border: 1px solid var(--primary-color-500);
+}
+
 .password {
+	border: none;
 	flex: 1;
-	/* height: 20px;
-	width: 90%; */
+}
+.password:focus {
+	outline: none;
+}
+.error {
+	height: 1rem;
+	color: var(--primary-color-500);
+	font-size: 1rem;
+	margin-top: 1rem;
+	animation: tinkle 5s linear;
+}
+@keyframes tinkle {
+	0% {
+		opacity: 1;
+	}
+	20% {
+		opacity: 0;
+	}
+	40% {
+		opacity: 1;
+	}
+	60% {
+		opacity: 0;
+	}
+	80% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+.loginBtn {
+	background-color: var(--primary-color-500);
+	border: 1px solid var(--primary-color-500);
+	border-radius: 3px;
+	margin-top: 1rem;
+	padding: 0.5rem;
+	color: var(--light-color-500);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	transition: all 0.3s;
+	margin-top: auto;
+	margin-bottom: 0;
+}
+.loginBtn:hover {
+	background-color: var(--dark-color-500);
+	border-color: transparent;
 }
