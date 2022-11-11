@@ -14,6 +14,7 @@ import { Pizza, OrderSubmited } from "../../interface";
 //CSS
 import styles from "../../styles/admin.module.css";
 import { redirect } from "next/dist/server/api-utils";
+import { log } from "console";
 
 interface AdminProps {
 	productsData: Pizza[];
@@ -23,8 +24,19 @@ interface AdminProps {
 const Admin = ({ productsData, ordersData }: AdminProps) => {
 	const [products, setProducts] = useState<Pizza[]>(productsData);
 	const [orders, setOrders] = useState<OrderSubmited[]>(ordersData);
+	const [idDisplay, setIdDisplay] = useState({ order: false, product: false });
+
 	const orderStatusText = ["paid", "preparing", "on the way", "delivered"];
 	const paymentMethodText = ["cash", "card"];
+
+	const handleIdDisplay = (direction: boolean, type: string) => {
+		if (type === "order") {
+			setIdDisplay({ ...idDisplay, order: direction });
+		}
+		if (type === "product") {
+			setIdDisplay({ ...idDisplay, product: direction });
+		}
+	};
 
 	const handleStatus = async (id: string) => {
 		const order = orders.find((order) => order._id === id);
@@ -84,7 +96,15 @@ const Admin = ({ productsData, ordersData }: AdminProps) => {
 												width={50}
 											/>
 										</td>
-										<td>{product._id.slice(0, 5) + "..."}</td>
+										<td
+											onMouseOver={() => handleIdDisplay(true, "product")}
+											onMouseLeave={() => handleIdDisplay(false, "product")}
+											className={`${idDisplay.product ? styles.showId : ""}`}
+										>
+											{!idDisplay.product
+												? product._id.slice(0, 5) + "..."
+												: product._id}
+										</td>
 										<td>{product.title}</td>
 										<td>{product.prices.join(", ")}</td>
 										<td className={styles.btnContainer}>
@@ -125,7 +145,15 @@ const Admin = ({ productsData, ordersData }: AdminProps) => {
 							{orders?.map((order) => {
 								return (
 									<tr className={styles.trTitle} key={order._id}>
-										<td>{order._id.slice(0, 5) + "..."}</td>
+										<td
+											onMouseOver={() => handleIdDisplay(true, "order")}
+											onMouseLeave={() => handleIdDisplay(false, "order")}
+											className={`${idDisplay.order ? styles.showId : ""}`}
+										>
+											{!idDisplay.order
+												? order._id.slice(0, 5) + "..."
+												: order._id}
+										</td>
 										<td>{order.customer}</td>
 										<td>{order.total}</td>
 										<td>{paymentMethodText[order.method]}</td>

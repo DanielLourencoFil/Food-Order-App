@@ -39,6 +39,7 @@ button {
 	width: 100%;
 }
 .container-center {
+	position: relative;
 	max-width: 1400px;
 	width: 80%;
 	margin: 0 auto;

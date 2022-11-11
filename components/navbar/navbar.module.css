@@ -2,7 +2,7 @@
 	background-color: var(--primary-color-500);
 	position: sticky;
 	top: 0;
-	z-index: 99;
+	z-index: 3;
 }
 .navCenter {
 	width: 90%;

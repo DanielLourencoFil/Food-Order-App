@@ -2,28 +2,37 @@
 	color: var(--dark-color-500);
 	min-height: calc(100vh - var(--navbar));
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 .title {
 	font-size: 2rem;
 }
 .adminSection {
-	flex: 1;
-	flex-wrap: wrap;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .table {
 	text-align: start;
-	/* width: 100%; */
 	border-spacing: 1.5rem;
 	margin-top: 2rem;
 }
-
+.table td {
+	text-align: center;
+	padding: 0.3rem;
+}
 .btnContainer {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: 0.2rem;
+}
+.showId {
+	border: 1px solid rgb(204, 204, 204);
+	transition: all 0.3s;
 }
 .btn {
 	padding: 0.2rem 0.75rem;

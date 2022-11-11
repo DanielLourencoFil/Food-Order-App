@@ -19,6 +19,7 @@ const Login = () => {
 
 	const handleSubmitLogin = async (e: any) => {
 		e.preventDefault();
+
 		try {
 			await axios.post("http://localhost:3000/api/login", {
 				username,
@@ -27,6 +28,8 @@ const Login = () => {
 			router.push("/admin");
 			setError(false);
 		} catch (error) {
+			console.log(error);
+
 			setError(true);
 		}
 	};
@@ -37,6 +40,7 @@ const Login = () => {
 			onClick={() => setIsFocus(document.activeElement?.id === "password")}
 		>
 			<section className={`section-center ${styles.login}`}>
+				<h1 className={styles.title}>Admin Dashboard</h1>
 				<form className={styles.form}>
 					<label htmlFor="user">username</label>
 					<input

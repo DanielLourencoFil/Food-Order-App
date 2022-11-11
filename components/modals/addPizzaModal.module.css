@@ -1,0 +1,27 @@
+.addModal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80%;
+	max-width: 600px;
+	height: 400px;
+	background-color: var(--light-color-500);
+	border-radius: 10px;
+	box-shadow: 1px 1px 10px var(--dark-color-500);
+}
+
+.closeBtn {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	background-color: var(--dark-color-500);
+	box-shadow: 1px 1px 10px var(--dark-color-500);
+}
+.closeBtnIcon {
+	font-size: 1rem;
+	color: var(--light-color-500);
+}

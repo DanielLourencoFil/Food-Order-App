@@ -1,0 +1,18 @@
+.btn {
+	background-color: var(--primary-color-500);
+	padding: 0.75rem 1.5rem;
+	border: 1px solid var(--primary-color-500);
+	border-radius: 3px;
+	box-shadow: 1px 1px 10px var(--dark-color-500);
+	font-size: 1rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: var(--light-color-500);
+	cursor: pointer;
+	margin-top: 2rem;
+	transition: all 0.3s;
+}
+.btn:hover {
+	background-color: transparent;
+	color: var(--dark-color-500);
+}

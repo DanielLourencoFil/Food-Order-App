@@ -1,9 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import cookie from "cookie";
+import Login from "../admin/login";
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+	const TOKEN: string = process.env.TOKEN || "";
+	const { username, password } = req.body;
+
 	if (req.method === "POST") {
-		const { username, password } = req.body;
+		console.log(
+			username == process.env.ADMIN_USERNAME &&
+				password == process.env.ADMIN_PASSWORD
+		);
 
 		if (
 			username === process.env.ADMIN_USERNAME &&
@@ -11,16 +18,16 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 		) {
 			res.setHeader(
 				"Set-cookie",
-				cookie.serialize("token", process.env.TOKEN, {
+				cookie.serialize("token", TOKEN, {
 					maxAge: 60 * 60,
 					sameSite: "strict",
 					path: "/",
 				})
 			);
+			res.status(200).json("succesfull");
+		} else {
+			res.status(400).json("wrong credentials");
 		}
-		res.status(200).json("succesfull");
-	} else {
-		res.status(200).json("wrong credentials");
 	}
 };
 
