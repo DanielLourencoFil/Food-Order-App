@@ -52,7 +52,21 @@ export const AddPizzaModal = ({ setOpen }: ModalProps) => {
 		}
 	};
 
-	const handleNewTopping = () => {};
+	const handleNewTopping = (
+		key: string | number,
+		value: any,
+		index: number
+	) => {
+		const newTopping = newPizza.extraOptions;
+		const toppingTitle = key === "topping" && value;
+		const prices = newPizza.extraOptions[newPizza.extraOptions.length].price;
+		prices[index] = key === "price" && value;
+		newTopping[newPizza.extraOptions.length] = {
+			topping: toppingTitle,
+			price: prices,
+		};
+		console.log(newTopping);
+	};
 	console.log(newPizza);
 
 	return (
@@ -105,25 +119,25 @@ export const AddPizzaModal = ({ setOpen }: ModalProps) => {
 					<input
 						type="text"
 						name="extras"
-						onChange={(e) => handleNewPizza("extrasTopping", e.target.value, 0)}
+						onChange={(e) => handleNewPizza("topping", e.target.value, 0)}
 					/>
 					<input
 						type="number"
 						name="extraPrice"
 						placeholder="small"
-						onChange={(e) => handleNewTopping("extras", +e.target.value, 0)}
+						onChange={(e) => handleNewTopping("price", +e.target.value, 0)}
 					/>
 					<input
 						type="number"
 						name="extraPrice"
 						placeholder="medium"
-						onChange={(e) => handleNewTopping("extras", +e.target.value, 1)}
+						onChange={(e) => handleNewTopping("price", +e.target.value, 1)}
 					/>
 					<input
 						type="number"
 						name="extraPrice"
 						placeholder="large"
-						onChange={(e) => handleNewTopping("extras", +e.target.value, 2)}
+						onChange={(e) => handleNewTopping("price", +e.target.value, 2)}
 					/>
 					<button onClick={() => console.log(newPizza.extraOptions)}>
 						add
