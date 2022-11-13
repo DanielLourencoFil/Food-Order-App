@@ -1,5 +1,6 @@
 //REACT
 import { useState } from "react";
+import { AddPizzaBtn } from "../../components";
 
 //NEXT
 import { GetServerSideProps } from "next";
@@ -73,7 +74,10 @@ const Admin = ({ productsData, ordersData }: AdminProps) => {
 		<div className="container">
 			<div className={` container-center ${styles.adminContainer}`}>
 				<section className={styles.adminSection}>
-					<h1 className={styles.title}>Products</h1>
+					<div className={styles.addButtonContainer}>
+						<h1 className={styles.title}>Products</h1>
+						<AddPizzaBtn />
+					</div>
 					<table className={styles.table}>
 						<thead>
 							<tr className={styles.trTitle}>
