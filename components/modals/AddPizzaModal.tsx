@@ -5,8 +5,8 @@ import { FaTimes } from "react-icons/fa";
 import { Pizza } from "../../interface";
 
 import styles from "./addPizzaModal.module.css";
-import { log } from "console";
 
+import axios from "axios";
 interface ModalProps {
 	setOpen: (value: boolean) => void;
 }
@@ -27,10 +27,15 @@ export const AddPizzaModal = ({ setOpen }: ModalProps) => {
 		img: "",
 		prices: [],
 		desc: "",
-		extraOptions: [{ topping: "", price: [] }],
+		extraOptions: [],
 	};
-
+	const toppingDefault: ExtraOptionDefault = {
+		topping: "",
+		price: [],
+	};
 	const [newPizza, setNewPizza] = useState<PizzaDefault>(pizzaDefault);
+	const [newTopping, setNewTopping] =
+		useState<ExtraOptionDefault>(toppingDefault);
 
 	const handleNewPizza = (key: string | number, value: any, index: number) => {
 		if (key === "title" || key === "desc" || key === "img") {
@@ -53,22 +58,52 @@ export const AddPizzaModal = ({ setOpen }: ModalProps) => {
 	};
 
 	const handleNewTopping = (
-		key: string | number,
-		value: any,
+		key: string,
+		value: string | number,
 		index: number
 	) => {
-		const newTopping = newPizza.extraOptions;
-		const toppingTitle = key === "topping" && value;
-		const prices = newPizza.extraOptions[newPizza.extraOptions.length].price;
-		prices[index] = key === "price" && value;
-		newTopping[newPizza.extraOptions.length] = {
-			topping: toppingTitle,
-			price: prices,
-		};
-		console.log(newTopping);
+		if (key === "topping") {
+			setNewTopping({ ...newTopping, topping: value as string });
+		}
+		if (key === "price") {
+			const prices = newTopping.price;
+			prices[index] = value as number;
+			setNewTopping({ ...newTopping, price: prices });
+		}
+		// const prices =
+		// 	newPizza.extraOptions[newPizza.extraOptions.length - 1].price;
+		// prices[index] = key === "price" && value;
+		// newTopping[newPizza.extraOptions.length - 1] = {
+		// 	topping: toppingTitle,
+		// 	price: prices,
+		// };
+		// const newTopping = newPizza.extraOptions;
+		// // let toppingTitle = key === "topping" && value;
+		// let toppingTitle = "";
+		// if (key === "topping") {
+		// 	toppingTitle = value;
+		// }
+		// const prices =
+		// 	newPizza.extraOptions[newPizza.extraOptions.length - 1].price;
+		// prices[index] = key === "price" && value;
+		// newTopping[newPizza.extraOptions.length - 1] = {
+		// 	topping: toppingTitle,
+		// 	price: prices,
+		// };
 	};
+	const addTopping = (e: any) => {
+		e.preventDefault();
+		setNewPizza({
+			...newPizza,
+			extraOptions: [...newPizza.extraOptions, newTopping],
+		});
+	};
+	// console.log(newTopping);
 	console.log(newPizza);
 
+	const addNewPizza = async () => {
+		await axios.post("http://localhost:3000/api/products", newPizza);
+	};
 	return (
 		<form className={styles.addModal}>
 			<button className={styles.closeBtn} onClick={() => setOpen(false)}>
@@ -119,7 +154,7 @@ export const AddPizzaModal = ({ setOpen }: ModalProps) => {
 					<input
 						type="text"
 						name="extras"
-						onChange={(e) => handleNewPizza("topping", e.target.value, 0)}
+						onChange={(e) => handleNewTopping("topping", e.target.value, 0)}
 					/>
 					<input
 						type="number"
@@ -139,12 +174,15 @@ export const AddPizzaModal = ({ setOpen }: ModalProps) => {
 						placeholder="large"
 						onChange={(e) => handleNewTopping("price", +e.target.value, 2)}
 					/>
-					<button onClick={() => console.log(newPizza.extraOptions)}>
-						add
-					</button>
+					<button onClick={(e) => addTopping(e)}>add</button>
 				</div>
-				<div className={styles.extrasIng}></div>
+				<div className={styles.extrasIng}>
+					{newPizza.extraOptions.map((extra, index) => {
+						return <span key={index}>{extra.topping}</span>;
+					})}
+				</div>
 			</div>
+			<button onClick={addNewPizza}>Add new pizza</button>
 		</form>
 	);
 };
