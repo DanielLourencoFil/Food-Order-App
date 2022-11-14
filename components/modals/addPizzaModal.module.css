@@ -1,14 +1,26 @@
-.addModal {
+.addPizzaModalContainer {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 80%;
-	max-width: 600px;
-	padding: 5rem 3rem;
-	background-color: var(--light-color-500);
-	border-radius: 10px;
-	box-shadow: 1px 1px 10px var(--dark-color-500);
+	top: 0;
+	left: 0;
+	transform: scale(0);
+	width: 100vw;
+	min-height: 100vh;
+	padding: 5rem 0;
+	display: grid;
+	place-items: center;
+	z-index: 10;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+.openContainer {
+	animation: open 1s ease-in-out forwards;
+}
+@keyframes open {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
 }
 
 .closeBtn {
@@ -24,4 +36,103 @@
 .closeBtnIcon {
 	font-size: 1rem;
 	color: var(--light-color-500);
+}
+
+/* FORM */
+.addModal {
+	position: relative;
+	width: 80%;
+	max-width: 600px;
+	padding: 5rem 3rem;
+	background-color: var(--light-color-500);
+	border-radius: 10px;
+	box-shadow: 1px 1px 10px var(--dark-color-500);
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	letter-spacing: 0.5px;
+}
+.title {
+	font-size: 2rem;
+	text-transform: capitalize;
+}
+.addModal label {
+	text-transform: capitalize;
+	font-weight: 700;
+	margin-top: 0.5rem;
+	font-size: 1.15rem;
+}
+.addModal input {
+	border: transparent;
+	border-bottom: 1px solid var(--dark-color-500);
+	padding: 0.25rem;
+	background-color: transparent;
+	font-size: 1rem;
+}
+.addModal textarea {
+	padding: 0.25rem;
+	font-size: 1rem;
+}
+.prices {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+.prices input {
+	width: 30%;
+	min-width: 150px;
+}
+
+.extras {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+.extrasInputAndBtnContainer {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.extrasInputs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+.extrasInputs input {
+	width: 30%;
+	min-width: 150px;
+}
+
+.addExtraBtn {
+	border: 1px solid var(--terceary-color-500);
+	background-color: var(--terceary-color-500);
+	min-width: 20%;
+	height: 50px;
+	border-radius: 5px;
+	color: var(--light-color-500);
+	text-transform: uppercase;
+	font-size: 1rem;
+	letter-spacing: 1px;
+	transition: all 0.3s;
+}
+.addExtraBtn:hover {
+	opacity: 0.8;
+}
+.addPizzaBtn {
+	color: var(--light-color-500);
+	border: 1px solid var(--primary-color-500);
+	background-color: var(--primary-color-500);
+	border-radius: 5px;
+	padding: 1rem;
+	text-transform: capitalize;
+	font-size: 1.1rem;
+	letter-spacing: 1px;
+	transition: all 0.3s;
+}
+.addPizzaBtn:hover {
+	opacity: 0.8;
+}
+.addPizzaBtn:disabled {
+	cursor: not-allowed;
 }

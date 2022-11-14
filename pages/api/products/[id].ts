@@ -31,6 +31,11 @@ export default async function handler(
 			res.status(500).json({ error });
 		}
 	}
+	if (method === "POST") {
+		try {
+			await Product.findByIdAndUpdate(id, req.body);
+		} catch (error) {}
+	}
 	if (method === "DELETE") {
 		try {
 			await Product.findByIdAndDelete(id);

@@ -10,3 +10,4 @@ export * from "./buttons/CashOnDeliveryBtn";
 
 export * from "./modals/CashPaymentClientDetails";
 export * from "./modals/AddPizzaModal";
+export * from "./modals/EditPizzaModal";

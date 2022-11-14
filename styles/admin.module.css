@@ -14,7 +14,12 @@
 	display: flex;
 	flex-direction: column;
 }
-
+.addButtonContainer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 2rem;
+}
 .table {
 	text-align: start;
 	border-spacing: 1.5rem;

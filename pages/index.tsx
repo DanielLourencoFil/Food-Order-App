@@ -29,9 +29,9 @@ const Home: NextPage = ({ pizzaList, admin }: any) => {
 			</Head>
 			<Hero />
 			<div className={`container-center`}>
-				{admin && <AddPizzaBtn setOpen={setOpen} />}
+				{/* {admin && <AddPizzaBtn setOpen={setOpen} />} */}
 				<PizzaCardSection pizzaList={pizzaList} />
-				{open && <AddPizzaModal setOpen={setOpen} />}
+				{/* {open && <AddPizzaModal setOpen={setOpen} open={open} />} */}
 				{/* <ChangeLanguageBtn language="english" text="EN" />
 				<ChangeLanguageBtn language="portugues" text="BR" /> */}
 			</div>
