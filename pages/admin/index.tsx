@@ -81,7 +81,7 @@ const Admin = ({ productsData, ordersData }: AdminProps) => {
 
 	return (
 		<>
-			{open.add && <AddPizzaModal setOpen={setOpen} open={open} id={editId} />}
+			{open.add && <AddPizzaModal setOpen={setOpen} open={open} />}
 			{open.edit && (
 				<EditPizzaModal
 					setOpen={setOpen}

@@ -177,9 +177,13 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 							add
 						</button>
 					</div>
-					<div className={styles.extrasIng}>
+					<div className={styles.extraToppingsContainer}>
 						{newPizza.extraOptions.map((extra, index) => {
-							return <span key={index}>{extra.topping}</span>;
+							return (
+								<span key={index} className={styles.extraTopping}>
+									{extra.topping}
+								</span>
+							);
 						})}
 					</div>
 				</div>
