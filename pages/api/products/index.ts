@@ -2,6 +2,7 @@
 import dbConnect from "../../../utils/mongo";
 import type { NextApiRequest, NextApiResponse } from "next";
 import Product from "../../../models/Product";
+import { log } from "console";
 
 export default async function handler(
 	req: NextApiRequest,
@@ -19,6 +20,7 @@ export default async function handler(
 	}
 	if (req.method === "POST") {
 		try {
+			console.log(req.body);
 			const product = Product.create(req.body);
 			res.status(201).json("product created");
 		} catch (error) {

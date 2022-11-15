@@ -7,6 +7,7 @@ import { OpenModalProps } from "../../pages/admin/index";
 import styles from "./addPizzaModal.module.css";
 
 import axios from "axios";
+import { log } from "console";
 interface ModalProps {
 	setOpen: (value: OpenModalProps) => void;
 	open: OpenModalProps;
@@ -40,7 +41,11 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 		useState<ExtraOptionDefault>(toppingDefault);
 
 	const handleNewPizza = (key: string | number, value: any, index: number) => {
-		if (key === "title" || key === "desc" || key === "img") {
+		if (key === "img") {
+			console.log(value[0]);
+			setNewPizza({ ...newPizza, [key]: value[0] });
+		}
+		if (key === "title" || key === "desc") {
 			setNewPizza({ ...newPizza, [key]: value });
 		}
 
@@ -81,8 +86,26 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 		});
 	};
 
-	const addNewPizza = async () => {
-		await axios.post("http://localhost:3000/api/products", newPizza);
+	const addNewPizza = async (e: any) => {
+		e.preventDefault();
+		const data = new FormData();
+		data.append("file", newPizza.img);
+		data.append("upload_preset", "uploads");
+
+		try {
+			const uploadRes = await axios.post(
+				`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDNAME}/image/upload`,
+				data
+			);
+			const { url } = uploadRes.data;
+			// setNewPizza({ ...newPizza, img: url });
+			const pizza = { ...newPizza, img: url };
+			console.log(newPizza, pizza, url);
+
+			await axios.post("http://localhost:3000/api/products", pizza);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -104,7 +127,7 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 					type="file"
 					id="img"
 					name="img"
-					onChange={(e) => handleNewPizza("img", e.target.value, 0)}
+					onChange={(e) => handleNewPizza("img", e.target.files, 0)}
 				/>
 				<label htmlFor="title">title</label>
 				<input
@@ -190,7 +213,7 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 				<button
 					className={styles.addPizzaBtn}
 					disabled={newPizza.extraOptions.length < 1}
-					onClick={addNewPizza}
+					onClick={(e) => addNewPizza(e)}
 				>
 					add new pizza
 				</button>

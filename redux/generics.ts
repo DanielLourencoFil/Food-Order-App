@@ -9,8 +9,6 @@ export const generics = createSlice({
 	initialState: initialState,
 	reducers: {
 		login: (state, action) => {
-			console.log(action.payload, "from reduce");
-
 			state.login = action.payload;
 		},
 	},
