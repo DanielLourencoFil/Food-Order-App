@@ -4,6 +4,20 @@
 	top: 0;
 	z-index: 3;
 }
+.adminDashboard {
+	position: absolute;
+	bottom: -40px;
+	left: 10px;
+	border: 1px solid var(--primary-color-500);
+	background-color: var(--primary-color-500);
+	color: var(--light-color-500);
+	border-radius: 3px;
+	padding: 0.3rem 0.75rem;
+	transition: opacity 0.3s;
+}
+.adminDashboard:hover {
+	opacity: 0.8;
+}
 .navCenter {
 	width: 90%;
 	height: 100px;

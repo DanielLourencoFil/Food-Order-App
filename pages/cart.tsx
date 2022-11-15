@@ -34,8 +34,6 @@ const Cart: NextPage = () => {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
-	console.log(isCash);
-
 	const createOrder = async (data: OrderSubmitedBasic) => {
 		try {
 			const res = await axios.post("http://localhost:3000/api/orders", data);

@@ -77,7 +77,6 @@ const Admin = ({ productsData, ordersData }: AdminProps) => {
 			console.log(error);
 		}
 	};
-	console.log(open);
 
 	return (
 		<>

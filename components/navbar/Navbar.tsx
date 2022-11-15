@@ -7,14 +7,13 @@ import { AiOutlinePhone, AiOutlineShoppingCart } from "react-icons/ai";
 
 import styles from "./navbar.module.css";
 import { useAppSelector } from "../../redux/hooks";
+import Login from "../../pages/admin/login";
 
 export const Navbar = () => {
 	const { languageTexts } = useLanguage();
 
 	const cart = useAppSelector((store) => store.cart);
-
-	// provisory data
-	const orderID = "absadsd324234";
+	const login = useAppSelector((store) => store.generics.login);
 
 	const router = useRouter();
 
@@ -22,8 +21,21 @@ export const Navbar = () => {
 		router.push(`/cart`);
 	};
 
+	const handleDashboard = () => {
+		router.push("/admin");
+	};
+
 	return (
 		<nav className={`container ${styles.navbar}`}>
+			{login && (
+				<button
+					className={styles.adminDashboard}
+					onClick={() => handleDashboard()}
+				>
+					Dashboard
+				</button>
+			)}
+
 			<div className={`container-center ${styles.navCenter}`}>
 				<div className={styles.order}>
 					<div className={styles.orderPhone}>

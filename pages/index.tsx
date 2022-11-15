@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import type { NextPage } from "next";
 import { GetServerSideProps } from "next";
 
 import Head from "next/head";
+
+// context
 import { useLanguage } from "../context/Language/LanguageContext";
+import { useAppDispatch } from "../redux/hooks";
 
 import { ChangeLanguageBtn } from "../components/buttons/ChangeLanguageBtn";
 import {
@@ -15,10 +18,16 @@ import {
 } from "../components";
 
 import axios from "axios";
+import { login } from "../redux/generics";
 
 const Home: NextPage = ({ pizzaList, admin }: any) => {
 	const [open, setOpen] = useState<boolean>(false);
 	const { languageTexts, currentLanguage, setCurrentLanguage } = useLanguage();
+
+	const dispatch = useAppDispatch();
+	useEffect(() => {
+		dispatch(login(admin));
+	});
 
 	return (
 		<>
