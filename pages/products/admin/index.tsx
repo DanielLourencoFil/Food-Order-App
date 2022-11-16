@@ -12,7 +12,7 @@ import axios from "axios";
 //INTERFACE
 import { Pizza, OrderSubmited } from "../../../interface";
 //CSS
-import styles from "../styles/admin.module.css";
+import styles from "../../../styles/admin.module.css";
 
 interface AdminProps {
 	productsData: Pizza[];
