@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { GetServerSideProps } from "next";
 
-import Head from "next/head";
+// import Head from "next/head";
 
 // context
 import { useLanguage } from "../context/Language/LanguageContext";
@@ -26,11 +26,11 @@ const Home: NextPage = ({ pizzaList, admin }: any) => {
 
 	return (
 		<>
-			<Head>
+			{/* <Head>
 				<title>Pizzaria DonDani</title>
 				<meta name="description" content="Best pizza in town" />
 				<link rel="icon" href="/images/favicon-32x32.png" />
-			</Head>
+			</Head> */}
 			<Hero />
 			<div className={`container-center`}>
 				<PizzaCardSection pizzaList={pizzaList} />
