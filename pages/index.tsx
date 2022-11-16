@@ -10,12 +10,7 @@ import { useLanguage } from "../context/Language/LanguageContext";
 import { useAppDispatch } from "../redux/hooks";
 
 import { ChangeLanguageBtn } from "../components/buttons/ChangeLanguageBtn";
-import {
-	Hero,
-	PizzaCardSection,
-	AddPizzaBtn,
-	AddPizzaModal,
-} from "../components";
+import { Hero, PizzaCardSection } from "../components";
 
 import axios from "axios";
 import { login } from "../redux/generics";
@@ -38,11 +33,7 @@ const Home: NextPage = ({ pizzaList, admin }: any) => {
 			</Head>
 			<Hero />
 			<div className={`container-center`}>
-				{/* {admin && <AddPizzaBtn setOpen={setOpen} />} */}
 				<PizzaCardSection pizzaList={pizzaList} />
-				{/* {open && <AddPizzaModal setOpen={setOpen} open={open} />} */}
-				{/* <ChangeLanguageBtn language="english" text="EN" />
-				<ChangeLanguageBtn language="portugues" text="BR" /> */}
 			</div>
 		</>
 	);

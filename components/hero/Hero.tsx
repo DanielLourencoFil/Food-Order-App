@@ -22,15 +22,15 @@ export const Hero = () => {
 		}
 	};
 
-	// useEffect(() => {
-	// 	const autoSlide = setInterval(() => {
-	// 		setSliding(sliding - 100);
-	// 		if (sliding <= -200) {
-	// 			setSliding(0);
-	// 		}
-	// 	}, 10000);
-	// 	return () => clearInterval(autoSlide);
-	// }, [sliding]);
+	useEffect(() => {
+		const autoSlide = setInterval(() => {
+			setSliding(sliding - 100);
+			if (sliding <= -200) {
+				setSliding(0);
+			}
+		}, 10000);
+		return () => clearInterval(autoSlide);
+	}, [sliding]);
 
 	const slider = (side: "right" | "left") => {
 		if (side === "right") {
