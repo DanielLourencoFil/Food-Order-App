@@ -29,7 +29,7 @@ const Home: NextPage = ({ pizzaList, admin }: any) => {
 			<Head>
 				<title>Pizzaria DonDani</title>
 				<meta name="description" content="Best pizza in town" />
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/images/favicon-32x32.png" />
 			</Head>
 			<Hero />
 			<div className={`container-center`}>
