@@ -39,6 +39,7 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 	const [newPizza, setNewPizza] = useState<PizzaDefault>(pizzaDefault);
 	const [newTopping, setNewTopping] =
 		useState<ExtraOptionDefault>(toppingDefault);
+	const [success, setSuccess] = useState<boolean>(false);
 
 	const handleNewPizza = (key: string | number, value: any, index: number) => {
 		if (key === "img") {
@@ -98,11 +99,11 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 				data
 			);
 			const { url } = uploadRes.data;
-			// setNewPizza({ ...newPizza, img: url });
 			const pizza = { ...newPizza, img: url };
-			console.log(newPizza, pizza, url);
 
 			await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/products`, pizza);
+
+			setSuccess(true);
 		} catch (error) {
 			console.log(error);
 		}

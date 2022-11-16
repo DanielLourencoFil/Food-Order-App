@@ -68,9 +68,6 @@ const Admin = ({ productsData, ordersData }: AdminProps) => {
 	const handleEdit = async (id: string) => {
 		setOpen({ edit: true, add: false });
 		setEditId(id);
-		// try {
-		// 	const res = await axios.put(`${process.env.NEXT_PUBLIC_URL}/api/orders/` + id);
-		// } catch (error) {}
 	};
 	const handleDelete = async (id: string) => {
 		try {
