@@ -216,7 +216,7 @@ export default SinglePizza;
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 	const res = await axios.get(
-		`http://localhost:3000/api/products/${params?.id}`
+		`${process.env.NEXT_PUBLIC_URL}/api/products/${params?.id}`
 	);
 
 	return {

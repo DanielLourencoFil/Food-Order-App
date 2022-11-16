@@ -102,7 +102,7 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 			const pizza = { ...newPizza, img: url };
 			console.log(newPizza, pizza, url);
 
-			await axios.post("http://localhost:3000/api/products", pizza);
+			await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/products`, pizza);
 		} catch (error) {
 			console.log(error);
 		}

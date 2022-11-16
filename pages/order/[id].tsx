@@ -156,7 +156,9 @@ export default Order;
 // - Only if you need to pre-render a page whose data must be fetched at request time
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-	const res = await axios.get(`http://localhost:3000/api/orders/${params?.id}`);
+	const res = await axios.get(
+		`${process.env.NEXT_PUBLIC_URL}/api/orders/${params?.id}`
+	);
 	return {
 		props: {
 			order: res.data,

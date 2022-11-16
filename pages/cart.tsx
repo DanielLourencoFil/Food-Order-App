@@ -36,7 +36,7 @@ const Cart: NextPage = () => {
 
 	const createOrder = async (data: OrderSubmitedBasic) => {
 		try {
-			const res = await axios.post("http://localhost:3000/api/orders", data);
+			const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/orders`, data);
 			res.status === 201 && router.push("/order/" + res.data._id);
 			dispatch(resetCart());
 		} catch (error) {

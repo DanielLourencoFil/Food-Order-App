@@ -99,7 +99,7 @@ export const EditPizzaModal = ({ setOpen, open, pizza }: ModalProps) => {
 	const editPizza = async (e: any) => {
 		// e.preventDefault();
 		await axios.post(
-			`http://localhost:3000/api/products/${pizza?._id}`,
+			`${process.env.NEXT_PUBLIC_URL}/api/products/${pizza?._id}`,
 			newPizza
 		);
 	};

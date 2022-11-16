@@ -21,7 +21,7 @@ const Login = () => {
 		e.preventDefault();
 
 		try {
-			await axios.post("http://localhost:3000/api/login", {
+			await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/login`, {
 				username,
 				password,
 			});
