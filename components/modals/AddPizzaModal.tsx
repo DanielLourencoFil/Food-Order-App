@@ -8,6 +8,7 @@ import styles from "./addPizzaModal.module.css";
 
 import axios from "axios";
 import { log } from "console";
+import { Pizza } from "../../interface/product";
 interface ModalProps {
 	setOpen: (value: OpenModalProps) => void;
 	open: OpenModalProps;
@@ -40,6 +41,8 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 	const [newTopping, setNewTopping] =
 		useState<ExtraOptionDefault>(toppingDefault);
 	const [success, setSuccess] = useState<boolean>(false);
+
+	console.log(newPizza);
 
 	const handleNewPizza = (key: string | number, value: any, index: number) => {
 		if (key === "img") {
@@ -99,11 +102,13 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 				data
 			);
 			const { url } = uploadRes.data;
-			const pizza = { ...newPizza, img: url };
+			const pizza: PizzaDefault = { ...newPizza, img: url };
 
 			await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/products`, pizza);
 
 			setSuccess(true);
+
+			window.location.reload();
 		} catch (error) {
 			console.log(error);
 		}
@@ -128,6 +133,7 @@ export const AddPizzaModal = ({ setOpen, open }: ModalProps) => {
 					type="file"
 					id="img"
 					name="img"
+					// onChange={(e) => handleNewPizzaImg(e.target.files)}
 					onChange={(e) => handleNewPizza("img", e.target.files, 0)}
 				/>
 				<label htmlFor="title">title</label>
