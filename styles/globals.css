@@ -36,7 +36,7 @@ button {
 
 /*GENERAL CLASSES*/
 .container {
-	width: 100%;
+	min-width: 100%;
 }
 .container-center {
 	position: relative;

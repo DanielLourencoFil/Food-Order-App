@@ -1,5 +1,5 @@
 .footer {
-	min-height: calc(100vh - var(--navbar));
+	/* height: calc(100vh - var(--navbar)); */
 	background-color: var(--dark-color-500);
 	display: flex;
 }

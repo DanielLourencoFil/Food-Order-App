@@ -106,9 +106,9 @@
 	.navCenter {
 		width: 80%;
 	}
-	.menu {
+	/* .menu {
 		display: none;
-	}
+	} */
 }
 @media screen and (max-width: 1000px) {
 	.menu li {
