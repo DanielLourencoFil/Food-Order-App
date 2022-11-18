@@ -4,7 +4,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This a fictional Pizzaria homepage (underconstruction!!)
 
-Fullstack app using NextJS
+Fullstack app using NextJS 
+
+Typescript 
+
+Redux toolkit for state management
 
 MongoBD for data storage and Cloudinay for images uploads
 
@@ -16,3 +20,7 @@ and also to updated the orders status for pizza tracking.
 It uses cookies for authentication
 
 [Check out how it is going](https://pizzaria-dondani.vercel.app/)
+
+
+https://user-images.githubusercontent.com/80107590/202769323-1e740342-9d3c-4c97-ad6d-19a8279b3dac.mp4
+
